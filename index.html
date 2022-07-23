@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //Randomly generate rock, paper or scissors
+        function getComputerChoice() {
+            let randomNumber = Math.floor(Math.random() * 3) + 1;
+
+            switch (randomNumber) {
+                case 1:
+                    return "ROCK";
+                    break;
+                case 2:
+                    return "PAPER";
+                    break;
+                case 3:
+                    return "SCISSORS";
+                    break;
+            }
+        }
+
+        //Play a single round of rock paper scissors
+
+        let roundWinner = " ";
+
+        function playRound(playerSelection, computerSelection) {
+
+            if (((playerSelection.toUpperCase() === "ROCK") && (computerSelection === "SCISSORS")) || ((playerSelection.toUpperCase() === "SCISSORS") && (computerSelection === "PAPER")) || ((playerSelection.toUpperCase() === "PAPER") && (computerSelection === "ROCK"))) {
+                return roundWinner = "You";
+            } else if (playerSelection.toUpperCase() === computerSelection) {
+                return roundWinner = "Tie";
+            } else {
+                return roundWinner = "Computer";
+            }
+        }
+
+        //Play a five-round game of rock paper scissors
+
+        function game() {
+            var playerScore = 0;
+            var computerScore = 0;
+
+            for (let i = 0; i < 5; i++) {
+                playRound(prompt("Enter your play: "), getComputerChoice());
+                if (roundWinner === "You") {
+                    console.log(`You win this round. The score is ${playerScore += 1} to ${computerScore}.`);
+                } else if (roundWinner === "Computer") {
+                    console.log(`The computer wins this round. The score is ${playerScore} to ${computerScore += 1}.`);
+                } else {
+                    console.log(`It's a tie. The score is still ${playerScore} to ${computerScore}.`);
+                }
+            }
+
+            if (playerScore > computerScore) {
+                return "You win the game!";
+            } else if (playerScore < computerScore) {
+                return "You lose the game. Better luck next time!";
+            } else {
+                return "Tie game.";
+            };
+        }
+    </script>
+
+</body>
+</html>
