@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div id="container">
         <h1>Rock / Paper / Scissors</h1>
         <p>Choose wisely:</p>
         <div class="btn-container">
-            <button class = "btn">ROCK</button>
-            <button class = "btn">PAPER</button>
-            <button class = "btn">SCISSORS</button>
+            <button id="rock" class="btn">ROCK</button>
+            <button id="paper" class="btn">PAPER</button>
+            <button id="scissors" class="btn">SCISSORS</button>
         </div>
     </div>
 
@@ -46,13 +46,32 @@
         function playRound(playerSelection, computerSelection) {
 
             if (((playerSelection.toUpperCase() === "ROCK") && (computerSelection === "SCISSORS")) || ((playerSelection.toUpperCase() === "SCISSORS") && (computerSelection === "PAPER")) || ((playerSelection.toUpperCase() === "PAPER") && (computerSelection === "ROCK"))) {
-                return roundWinner = "You";
+                console.log(roundWinner = "You")
             } else if (playerSelection.toUpperCase() === computerSelection) {
-                return roundWinner = "Tie";
+                console.log(roundWinner = "Tie")
             } else {
-                return roundWinner = "Computer";
+                console.log(roundWinner = "Computer")
             }
         }
+
+        var rock =  document.getElementById("rock");
+        rock.addEventListener("click", function() {
+            playRound("ROCK", getComputerChoice())
+        });
+
+        var paper =  document.getElementById("paper");
+        paper.addEventListener("click", function() {
+            playRound("PAPER", getComputerChoice())
+        });
+
+        var scissors =  document.getElementById("scissors");
+        scissors.addEventListener("click", function() {
+            playRound("SCISSORS", getComputerChoice())
+        });
+
+        //document.getElementById("rock").addEventListener("click", playRound("ROCK", getComputerChoice()));
+        //document.getElementById("paper").addEventListener("click", playRound("PAPER", getComputerChoice()));
+        //document.getElementById("scissors").addEventListener("click", playRound("SCISSORS", getComputerChoice()));
 
         //Play a five-round game of rock paper scissors
 
