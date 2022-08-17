@@ -1,7 +1,9 @@
 # Rock paper scissors
 
-This is a project for the Odin Project to create a simple rock paper scissors game. 
+This is a project for the Odin Project to create a rock paper scissors game with a simple UI.
 
-When the game() function is called, the user is prompted to enter a guess: rock, paper, or scissors. The computer also generates a random guess, and the two guesses are compared to determine the winner of a five-round game.
+#Instructions
 
-For the user's guess, capitalization doesn't affect the outcome since .toUpperCase() is used to convert the user's guess to compare with the computer's guess, which is all-caps by default. So, a user can enter rock, Rock, RoCk, or another variation and no difference is made.
+Click one of the three buttons (labeled rock, paper, or scissors) to make your respective guess. Once clicked, the computer will also make its own guess. The guesses are compared, the round winner is announced, and the score is calculated. Sometimes a round is a tie, in which case the score won't change!
+
+The game ends when either you or the computer first reaches 5 points and is announced as the winner. A button then appears prompting you to play again. 
