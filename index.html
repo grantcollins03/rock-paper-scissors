@@ -3,26 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="container">
-        <h1>Rock / Paper / Scissors</h1>
-        <p>Choose wisely:</p>
-        <div class="btn-container">
-            <button id="rock" class="btn">ROCK</button>
-            <button id="paper" class="btn">PAPER</button>
-            <button id="scissors" class="btn">SCISSORS</button>
+    <div class="main-container">
+        <div class="title-container">
+            <h1>Rock / Paper / Scissors</h1>
+            <p class="choose">Best out of 5:</p>
+            <div class="btn-container">
+                <button id="rock" class="play-btn">ROCK</button>
+                <button id="paper" class="play-btn">PAPER</button>
+                <button id="scissors" class="play-btn">SCISSORS</button>
+            </div>
         </div>
+        <div class="results-container">
+            <div class="user-results-container">
+                <h2>You</h2>
+                <p id="user-result"></p>
+            </div>
+            <div class="score-container">
+                <div class="scores" id="user-score">0</div>
+                <div id="separator">|</div>
+                <div class="scores" id="comp-score">0</div>
+            </div>
+            <div class="comp-results-container">
+                <h2>Computer</h2>
+                <p id="comp-result"></p>
+            </div>
+        </div>    
+        <div id="announcement"></div>
     </div>
-
-
     
     <script>
 
-        //Randomly generate rock, paper or scissors
         function getComputerChoice() {
             let randomNumber = Math.floor(Math.random() * 3) + 1;
 
@@ -39,69 +54,60 @@
             }
         }
 
-        //Play a single round of rock paper scissors
-
-        let roundWinner = " ";
-
-        function playRound(playerSelection, computerSelection) {
-
-            if (((playerSelection.toUpperCase() === "ROCK") && (computerSelection === "SCISSORS")) || ((playerSelection.toUpperCase() === "SCISSORS") && (computerSelection === "PAPER")) || ((playerSelection.toUpperCase() === "PAPER") && (computerSelection === "ROCK"))) {
-                console.log(roundWinner = "You")
-            } else if (playerSelection.toUpperCase() === computerSelection) {
-                console.log(roundWinner = "Tie")
-            } else {
-                console.log(roundWinner = "Computer")
-            }
-        }
-
-        var rock =  document.getElementById("rock");
+        let rock = document.getElementById("rock");
         rock.addEventListener("click", function() {
-            playRound("ROCK", getComputerChoice())
+            play("ROCK", getComputerChoice())
         });
 
-        var paper =  document.getElementById("paper");
+        let paper = document.getElementById("paper");
         paper.addEventListener("click", function() {
-            playRound("PAPER", getComputerChoice())
+            play("PAPER", getComputerChoice())
         });
 
-        var scissors =  document.getElementById("scissors");
+        let scissors = document.getElementById("scissors");
         scissors.addEventListener("click", function() {
-            playRound("SCISSORS", getComputerChoice())
+            play("SCISSORS", getComputerChoice())
         });
 
-        //document.getElementById("rock").addEventListener("click", playRound("ROCK", getComputerChoice()));
-        //document.getElementById("paper").addEventListener("click", playRound("PAPER", getComputerChoice()));
-        //document.getElementById("scissors").addEventListener("click", playRound("SCISSORS", getComputerChoice()));
 
-        //Play a five-round game of rock paper scissors
+        let userResult = document.getElementById("user-result");
+        let compResult = document.getElementById("comp-result");
+        let announcement = document.getElementById("announcement");   
+        let userScore = 0;
+        let compScore = 0;
 
-        /* function game() {
-            var playerScore = 0;
-            var computerScore = 0;
-
-            for (let i = 0; i < 5; i++) {
-                playRound(prompt("Enter your play: "), getComputerChoice());
-                if (roundWinner === "You") {
-                    console.log(`You win this round. The score is ${playerScore += 1} to ${computerScore}.`);
-                } else if (roundWinner === "Computer") {
-                    console.log(`The computer wins this round. The score is ${playerScore} to ${computerScore += 1}.`);
-                } else {
-                    console.log(`It's a tie. The score is still ${playerScore} to ${computerScore}.`);
-                }
+        function play(playerSelection, compSelection) {
+            userResult.textContent = playerSelection;
+            compResult.textContent = compSelection;
+            if (((playerSelection.toUpperCase() === "ROCK") && (compSelection === "SCISSORS")) || ((playerSelection.toUpperCase() === "SCISSORS") && (compSelection === "PAPER")) || ((playerSelection.toUpperCase() === "PAPER") && (compSelection === "ROCK"))) {
+                userScore += 1;
+                document.getElementById("user-score").textContent = userScore;
+                userScore < 5 ? announcement.textContent = "You win this round." : announcement.textContent = "You win the game."; //can I add another action here?
+            } else if (playerSelection.toUpperCase() === compSelection) {
+                announcement.textContent = "This round is a tie.";
+            } else {
+                compScore += 1;
+                document.getElementById("comp-score").textContent = compScore;
+                compScore < 5 ? announcement.textContent = "The computer wins this round." : announcement.textContent = "The computer wins the game.";
             }
 
-            if (playerScore > computerScore) {
-                return "You win the game!";
-            } else if (playerScore < computerScore) {
-                return "You lose the game. Better luck next time!";
-            } else {
-                return "Tie game.";
-            };
+            //Disable buttons and ask to play again?
+            if (userScore === 5 || compScore === 5) {
+                rock.disabled = true;
+                scissors.disabled = true;
+                paper.disabled = true;
+
+                let mainContainer = document.querySelector('.main-container');
+                let playAgainBtn = document.createElement('button');
+                playAgainBtn.textContent = "Play again?";
+                playAgainBtn.classList.add('play-again-btn');
+
+                playAgainBtn.addEventListener('click', function(){location.reload()});
+                
+                mainContainer.appendChild(playAgainBtn);
+            }
         }
-        */
-       
 
     </script>
-
 </body>
 </html>

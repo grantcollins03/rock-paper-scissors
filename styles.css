@@ -5,7 +5,7 @@
 body {
     color: #f0f0f0;
     background-color: #324A5F;
-    height: 80%;
+    height: 100%;
     width: 100%;
     display: flex;
     position: fixed;
@@ -13,13 +13,19 @@ body {
     justify-content: center;
 }
 
-#container {
+.main-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
     background-color: #1B2A41;
     padding: 48px;
     border-radius: 25px;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
@@ -27,7 +33,7 @@ h1 {
     margin: 0px;
 }
 
-p {
+.choose {
     font-size: 24px;
 }
 
@@ -49,4 +55,50 @@ button:hover {
 .btn-container {
     display: flex;
     gap: 24px;
+}
+
+.results-container {
+    margin: 24px 48px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+}
+
+.user-results-container, .score-container, .comp-results-container {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.user-results-container, .comp-results-container {
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+h2 {
+    text-decoration: underline;
+    font-size: 36px;
+}
+
+#user-result, #comp-result {
+    margin-top: 0px;
+}
+
+#separator {
+    font-size: 64px;
+}
+
+#announcement {
+    align-self: center;
+    font-size: 24px;
+}
+
+.score-container {
+    align-items: center;
+    font-size: 64px;
+}
+
+.play-again-btn {
+    margin: 24px 196px 0px 196px;
 }
